@@ -26,26 +26,30 @@ public class MainActivity extends AppCompatActivity {
 
             String hoursTextViewString = binding.hoursTextView.getText().toString();
             if (!hoursTextViewString.isEmpty()) {
-                int hours = Integer.parseInt(hoursTextViewString) / 3600000;
+                int hours = Integer.parseInt(hoursTextViewString) * 3600000;
                 timerTime = timerTime + hours;
             }
 
             String minutesTextViewS = binding.minutesTextView.getText().toString();
             if (!minutesTextViewS.isEmpty()) {
-                int minutes = Integer.parseInt(minutesTextViewS) / 60000;
+                int minutes = Integer.parseInt(minutesTextViewS) * 60000;
                 timerTime = timerTime + minutes;
 
             }
 
             String secondsTextViewS = binding.secondsTextView.getText().toString();
             if (!secondsTextViewS.isEmpty()) {
-                int secs = Integer.parseInt(secondsTextViewS) / 1000;
+                int secs = Integer.parseInt(secondsTextViewS) * 1000;
                 timerTime = timerTime + secs;
 
             }
 
+
             setTimer(timerTime);
             countDownTimer.start();
+            timerTime = 0;
+
+
         });
 
         binding.stopButton.setOnClickListener(v -> {
@@ -70,9 +74,12 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("DefaultLocale")
             @Override
             public void onTick(long millisUntilFinished) {
+                binding.secondsTextView.setText(String.format("%d", millisUntilFinished -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+
+                binding.minutesTextView.setText(String.format("%d",TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
+
                 binding.hoursTextView.setText(String.format("%d", TimeUnit.MILLISECONDS.toHours(millisUntilFinished)));
-                binding.minutesTextView.setText(String.format("%d", TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
-                binding.secondsTextView.setText(String.format("%d", TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)));
 
             }
 
