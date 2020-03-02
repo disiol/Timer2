@@ -79,11 +79,12 @@
                 android:textSize="60sp" />
         </LinearLayout>
 
-        <TextView
+        <EditText
             android:id="@+id/timer_title_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/timer_title"
+            android:text="@string/timer_title"
             android:textColor="@color/colorAccent"
             android:textColorHint="@color/colorAccent"
             android:textSize="60sp"

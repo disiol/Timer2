@@ -1,5 +1,6 @@
 package com.timer.timer;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -88,8 +89,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
 
+showMessage(binding.timerTitleTextView.getText().toString() + " " + "finish");
                 //TODO add saud and mesege
             }
         };
+    }
+
+    public void showMessage(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message)
+                .setCancelable(false)
+                .setNegativeButton("ОК",
+                        (dialog, id) -> {
+                            dialog.cancel();
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
