@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Timer</string>
     <string name="add_new_timer">add new timer</string>
-    <string name="hit_000">000</string>
+    <string name="hit_000">00</string>
     <string name="timer_title">timer title</string>
 
 </resources>

@@ -26,20 +26,20 @@ public class MainActivity extends AppCompatActivity {
 
             String hoursTextViewString = binding.hoursTextView.getText().toString();
             if (!hoursTextViewString.isEmpty()) {
-                int hours = Integer.parseInt(hoursTextViewString) * 3600;
+                int hours = Integer.parseInt(hoursTextViewString) / 3600000;
                 timerTime = timerTime + hours;
             }
 
             String minutesTextViewS = binding.minutesTextView.getText().toString();
             if (!minutesTextViewS.isEmpty()) {
-                int minutes = Integer.parseInt(minutesTextViewS) * 60;
+                int minutes = Integer.parseInt(minutesTextViewS) / 60000;
                 timerTime = timerTime + minutes;
 
             }
 
             String secondsTextViewS = binding.secondsTextView.getText().toString();
             if (!secondsTextViewS.isEmpty()) {
-                int secs = Integer.parseInt(secondsTextViewS) % 60;
+                int secs = Integer.parseInt(secondsTextViewS) / 1000;
                 timerTime = timerTime + secs;
 
             }
@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setTimer(long time) {
-        time = 1000 * time;
         countDownTimer = new CountDownTimer(time, 1) {
             @SuppressLint("DefaultLocale")
             @Override
