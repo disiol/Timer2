@@ -74,10 +74,11 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("DefaultLocale")
             @Override
             public void onTick(long millisUntilFinished) {
-                binding.secondsTextView.setText(String.format("%d", millisUntilFinished -
+                binding.secondsTextView.setText(String.format("%d", TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
                         TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
 
-                binding.minutesTextView.setText(String.format("%d",TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
+                binding.minutesTextView.setText(String.format("%d", TimeUnit.MILLISECONDS.toHours(millisUntilFinished) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
 
                 binding.hoursTextView.setText(String.format("%d", TimeUnit.MILLISECONDS.toHours(millisUntilFinished)));
 
