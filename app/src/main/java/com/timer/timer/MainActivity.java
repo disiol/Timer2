@@ -32,20 +32,36 @@ public class MainActivity extends AppCompatActivity {
 
             String minutesTextViewS = binding.minutesTextView.getText().toString();
             if (!minutesTextViewS.isEmpty()) {
-                int minutes = Integer.parseInt(minutesTextViewS ) * 60;
+                int minutes = Integer.parseInt(minutesTextViewS) * 60;
                 timerTime = timerTime + minutes;
 
             }
 
             String secondsTextViewS = binding.secondsTextView.getText().toString();
             if (!secondsTextViewS.isEmpty()) {
-                int secs = Integer.parseInt(secondsTextViewS);
+                int secs = Integer.parseInt(secondsTextViewS) % 60;
                 timerTime = timerTime + secs;
 
             }
 
             setTimer(timerTime);
             countDownTimer.start();
+        });
+
+        binding.stopButton.setOnClickListener(v -> {
+            countDownTimer.cancel();
+            timerTime = 0;
+        });
+
+        binding.resetButton.setOnClickListener(v -> {
+            if (countDownTimer != null) {
+                countDownTimer.cancel();
+            }
+            timerTime = 0;
+            binding.hoursTextView.getText().clear();
+            binding.minutesTextView.getText().clear();
+            binding.secondsTextView.getText().clear();
+            setTimer(timerTime);
         });
     }
 
