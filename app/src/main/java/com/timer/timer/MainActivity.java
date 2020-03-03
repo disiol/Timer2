@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.stopButton.setOnClickListener(v -> {
-            countDownTimer.cancel();
+            if (countDownTimer != null) {
+                countDownTimer.cancel();
+            }
             timerTime = 0;
         });
 
@@ -89,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
 
-showMessage(binding.timerTitleTextView.getText().toString() + " " + "finish");
+                showMessage(binding.timerTitleTextView.getText().toString() + " " + "finish");
                 //TODO add saud and mesege
             }
         };
