@@ -25,25 +25,9 @@ public class MainActivity extends AppCompatActivity {
         binding.startButton.setOnClickListener(v -> {
 
 
-            String hoursTextViewString = binding.hoursTextView.getText().toString();
-            if (!hoursTextViewString.isEmpty()) {
-                int hours = Integer.parseInt(hoursTextViewString) * 3600000;
-                timerTime = timerTime + hours;
-            }
 
-            String minutesTextViewS = binding.minutesTextView.getText().toString();
-            if (!minutesTextViewS.isEmpty()) {
-                int minutes = Integer.parseInt(minutesTextViewS) * 60000;
-                timerTime = timerTime + minutes;
 
-            }
-
-            String secondsTextViewS = binding.secondsTextView.getText().toString();
-            if (!secondsTextViewS.isEmpty()) {
-                int secs = Integer.parseInt(secondsTextViewS) * 1000;
-                timerTime = timerTime + secs;
-
-            }
+            getDataForTimer();
 
 
             setTimer(timerTime);
@@ -70,6 +54,28 @@ public class MainActivity extends AppCompatActivity {
             binding.secondsTextView.getText().clear();
             setTimer(timerTime);
         });
+    }
+
+    private void getDataForTimer() {
+        String hoursTextViewString = binding.hoursTextView.getText().toString();
+        if (!hoursTextViewString.isEmpty()) {
+            int hours = Integer.parseInt(hoursTextViewString) * 3600000;
+            timerTime = timerTime + hours;
+        }
+
+        String minutesTextViewS = binding.minutesTextView.getText().toString();
+        if (!minutesTextViewS.isEmpty()) {
+            int minutes = Integer.parseInt(minutesTextViewS) * 60000;
+            timerTime = timerTime + minutes;
+
+        }
+
+        String secondsTextViewS = binding.secondsTextView.getText().toString();
+        if (!secondsTextViewS.isEmpty()) {
+            int secs = Integer.parseInt(secondsTextViewS) * 1000;
+            timerTime = timerTime + secs;
+
+        }
     }
 
     private void setTimer(long time) {
